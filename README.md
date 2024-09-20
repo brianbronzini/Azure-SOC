@@ -3,7 +3,7 @@
 
 ## Introduction
 
-In this project, I build a mini honeynet in Azure and ingest log sources from various resources into a Log Analytics workspace, which is then used by Microsoft Sentinel to build attack maps, trigger alerts, and create incidents. I measured some security metrics in the insecure environment for 24 hours, apply some security controls to harden the environment, measure metrics for another 24 hours, then show the results below. The metrics we will show are:
+In this project, I built a mini honeynet in Azure and ingested log sources from various resources into a Log Analytics workspace. Microsoft Sentinel was then used to generate attack maps, trigger alerts, and create incidents. I measured security metrics in the initial insecure environment for 24 hours, applied security controls to harden the system, and then measured the metrics for another 24 hours. The key metrics analyzed are:
 
 - SecurityEvent (Windows Event Logs)
 - Syslog (Linux Event Logs)
@@ -27,16 +27,18 @@ The architecture of the mini honeynet in Azure consists of the following compone
 - Azure Storage Account
 - Microsoft Sentinel
 
-For the "BEFORE" metrics, all resources were originally deployed, exposed to the internet. The Virtual Machines had both their Network Security Groups and built-in firewalls wide open, and all other resources are deployed with public endpoints visible to the Internet; aka, no use for Private Endpoints.
+### Before Hardening:
+All resources were exposed to the internet. The Virtual Machines had wide-open Network Security Groups and firewalls, and the remaining resources were deployed with public endpoints, without utilizing Private Endpoints.
 
-For the "AFTER" metrics, Network Security Groups were hardened by blocking ALL traffic with the exception of my admin workstation, and all other resources were protected by their built-in firewalls as well as Private Endpoint
+### After Hardening
+Network Security Groups were tightened to block all traffic except from my admin workstation. Other resources were secured using built-in firewalls and private endpoints.
 
 ## Attack Maps Before Hardening / Security Controls
 <img src="https://i.ibb.co/fNWqQhW/nsg-malicious-allowed-in.png" alt="nsg-malicious-allowed-in" border="0"><br>
 <img src="https://i.ibb.co/0cHZXV6/linux-auth-fail.png" alt="linux-auth-fail" border="0"><br>
 <img src="https://i.ibb.co/3CTrzXm/windows-rdp-auth-fail.png" alt="windows-rdp-auth-fail" border="0"><br>
 
-## Metrics Before Hardening / Security Controls
+## Security Metrics Before Hardening / Security Controls
 
 The following table shows the metrics we measured in our insecure environment for 24 hours:
 Start Time 2024-08-31 22:51
@@ -54,7 +56,7 @@ Stop Time 2024-09-02 22:51
 
 ```All map queries returned no results due to no instances of malicious activity for the 24-hour period after hardening.```
 
-## Metrics After Hardening / Security Controls
+## Security Metrics After Hardening / Security Controls
 
 The following table shows the metrics I measured in our environment for another 24 hours, but after I applied security controls:
 Start Time 2024-09-18 00:47
@@ -70,6 +72,6 @@ Stop Time	2024-09-19 00:47
 
 ## Conclusion
 
-In this project, I constructed a mini honeynet in Microsoft Azure, and log sources were integrated into a Log Analytics workspace. Microsoft Sentinel was employed to trigger alerts and create incidents based on the ingested logs. Additionally, metrics were measured in the insecure environment before security controls were applied, and then again after implementing security measures. It is noteworthy that the number of security events and incidents was drastically reduced after the security controls were applied, demonstrating their effectiveness.
+In this project, I constructed a mini honeynet in Azure and integrated its log sources into a Log Analytics workspace. Microsoft Sentinel was used to trigger alerts and create incidents. Security metrics were measured both in the insecure environment and after implementing security controls. The significant reduction in security events and incidents after hardening demonstrates the effectiveness of the controls.
 
-It is worth noting that if the resources within the network were heavily utilized by regular users, it is likely that more security events and alerts may have been generated within the 24-hour period following the implementation of the security controls.
+It's worth noting that if the network resources were heavily utilized by regular users, there might have been more security events in the 24-hour period following the implementation of these controls.
