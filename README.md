@@ -32,9 +32,9 @@ For the "BEFORE" metrics, all resources were originally deployed, exposed to the
 For the "AFTER" metrics, Network Security Groups were hardened by blocking ALL traffic with the exception of my admin workstation, and all other resources were protected by their built-in firewalls as well as Private Endpoint
 
 ## Attack Maps Before Hardening / Security Controls
-![NSG Allowed Inbound Malicious Flows](https://ibb.co/s14bt04)<br>
-![Linux Syslog Auth Failures](https://ibb.co/nbxf08Y)<br>
-![Windows RDP/SMB Auth Failures](https://ibb.co/jr86RKk)<br>
+<img src="https://i.ibb.co/fNWqQhW/nsg-malicious-allowed-in.png" alt="nsg-malicious-allowed-in" border="0"><br>
+<img src="https://i.ibb.co/0cHZXV6/linux-auth-fail.png" alt="linux-auth-fail" border="0"><br>
+<img src="https://i.ibb.co/3CTrzXm/windows-rdp-auth-fail.png" alt="windows-rdp-auth-fail" border="0"><br>
 
 ## Metrics Before Hardening / Security Controls
 
@@ -56,7 +56,7 @@ Stop Time 2024-09-02 22:51
 
 ## Metrics After Hardening / Security Controls
 
-The following table shows the metrics we measured in our environment for another 24 hours, but after we have applied security controls:
+The following table shows the metrics I measured in our environment for another 24 hours, but after I applied security controls:
 Start Time 2024-09-18 00:47
 Stop Time	2024-09-19 00:47
 
@@ -70,6 +70,6 @@ Stop Time	2024-09-19 00:47
 
 ## Conclusion
 
-In this project, a mini honeynet was constructed in Microsoft Azure and log sources were integrated into a Log Analytics workspace. Microsoft Sentinel was employed to trigger alerts and create incidents based on the ingested logs. Additionally, metrics were measured in the insecure environment before security controls were applied, and then again after implementing security measures. It is noteworthy that the number of security events and incidents were drastically reduced after the security controls were applied, demonstrating their effectiveness.
+In this project, I constructed a mini honeynet in Microsoft Azure, and log sources were integrated into a Log Analytics workspace. Microsoft Sentinel was employed to trigger alerts and create incidents based on the ingested logs. Additionally, metrics were measured in the insecure environment before security controls were applied, and then again after implementing security measures. It is noteworthy that the number of security events and incidents was drastically reduced after the security controls were applied, demonstrating their effectiveness.
 
 It is worth noting that if the resources within the network were heavily utilized by regular users, it is likely that more security events and alerts may have been generated within the 24-hour period following the implementation of the security controls.
